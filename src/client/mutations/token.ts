@@ -68,6 +68,14 @@ async function prepareCreateToken(
     initialBuy?: number
   },
 ) {
+  console.log(
+    'fomo factor address from token.ts:',
+    import.meta.env[`VITE_FOMO_FACTORY_ADDRESS_${chainId}`],
+  )
+  console.log(
+    'uniswap v3 factory address:',
+    import.meta.env[`VITE_UNISWAP_V3_FACTORY_ADDRESS_${chainId}`],
+  )
   const [protocolFeeEth, tickSpacing] = await multicall(config, {
     allowFailure: false,
     contracts: [
@@ -84,12 +92,18 @@ async function prepareCreateToken(
       },
     ],
   })
+  console.log('protocolFeeeth:', protocolFeeEth)
+  console.log('tickspacking:', tickSpacing)
   const marketCap = await fetchUsdEthAmount(config, chainId, import.meta.env.VITE_USD_MARKET_CAP)
+
   const protocolFee = Number(formatEther(protocolFeeEth as bigint))
   const totalSupply = parseUnits(data.totalSupply.toString(), 18)
   const value = parseEther((Number(data.initialBuy || 0) + protocolFee).toString())
+  console.log('totalSupply:', data.totalSupply)
+  console.log('marketcap:', marketCap)
+  console.log('tickspacking:', tickSpacing)
   const initialTick = calculateInitialTick(data.totalSupply, marketCap, tickSpacing as number)
-
+  console.log('initialTick:', initialTick)
   return {
     address: import.meta.env[`VITE_FOMO_FACTORY_ADDRESS_${chainId}`],
     abi: fomoFactoryAbi,
@@ -155,11 +169,21 @@ export const useCreateToken = (options?: {
       initialBuy?: number
     }) => {
       if (!client) throw new Error('Failed to initialize client')
-
+      console.log('start mint...')
+      console.log('chainID:', chainId)
+      console.log('config:', config)
+      console.log('data:', data)
       const args = await prepareCreateToken(config, chainId, data)
+      console.log('args:', args)
+      try {
+        await writeContract(config, args)
+      } catch (e) {
+        console.log('write contract error:', e)
+      }
       const hash = await writeContract(config, args)
+      console.log('hash:', hash)
       const receipt = await waitForTransactionReceipt(client, { hash })
-
+      console.log('receipt:', receipt)
       const logs = parseEventLogs({
         abi: fomoFactoryAbi,
         eventName: 'MemecoinCreated',

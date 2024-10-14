@@ -94,7 +94,6 @@ const NewCoin = () => {
         showError(t('coin:new.error', { name: name }))
         return
       }
-
       setTokenMetadata(
         {
           address: tokenAddress,

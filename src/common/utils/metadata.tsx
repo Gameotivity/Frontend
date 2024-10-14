@@ -7,6 +7,7 @@ export async function fetchMetadata(path: string): Promise<JSX.Element | JSX.Ele
     const response = await fetch(url, {
       method: 'GET',
       cache: 'no-cache',
+      mode: 'no-cors',
     })
 
     if (response.ok) {

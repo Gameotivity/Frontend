@@ -100,6 +100,10 @@ export async function fetchTokensDexData(
   chainId: number,
   tokens: `0x${string}`[],
 ): Promise<DexData[]> {
+  console.log(
+    'fomo factor address from dex.ts:',
+    import.meta.env[`VITE_FOMO_FACTORY_ADDRESS_${chainId}`],
+  )
   const request = tokens.flatMap((token) => {
     return {
       address: import.meta.env[`VITE_FOMO_FACTORY_ADDRESS_${chainId}`],

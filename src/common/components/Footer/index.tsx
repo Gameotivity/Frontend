@@ -15,15 +15,15 @@ const Footer = () => {
           </button>
         </div>
         <div className="flex flex-row items-center gap-2">
-          <a href="https://t.me/+OuYA3ZHYfxw4ZGI0" target="_blank" rel="noreferrer">
+          <a href="www.dogdefi.fun" target="_blank" rel="noreferrer">
             <TelegramIcon className="h-6 w-6" />
           </a>
-          <a href="https://x.com/FomoFactoryWTF" target="_blank" rel="noreferrer">
+          <a href="www.dogdefi.fun" target="_blank" rel="noreferrer">
             <TwitterIcon className="h-6 w-6" />
           </a>
         </div>
         <div className="flex flex-row items-center gap-2">
-          <Typography variant="mutedText">© 2024 FomoFactory</Typography>
+          <Typography variant="mutedText">© 2024 DogDefi.fun</Typography>
         </div>
       </div>
     </footer>

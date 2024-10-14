@@ -106,21 +106,29 @@ export function useSmartWallet() {
 export function useWriteContract() {
   const { capabilities, isSmartWallet } = useSmartWallet()
   const provider = useEthersProvider()
+  console.log('capabilities:', capabilities)
+  console.log('isSmartWallet:', isSmartWallet)
+  console.log('provider:', provider)
 
   return useMemo(() => {
-    if (!isSmartWallet || !capabilities)
+    console.log('first write contract')
+    if (!isSmartWallet || !capabilities) {
       return {
         writeContract: async (config: Config, args: WriteContractParameters) =>
           await writeContract(config, args),
       }
+    }
     return {
       writeContract: async (config: Config, args: WriteContractParameters) => {
         const id = await writeContracts(config, {
           contracts: [args],
           capabilities,
         })
+        console.log('write contract!', id)
+
         return await poll<`0x${string}`>(
           (async () => {
+            console.log('write contract third:', id)
             const status = await getCallsStatus(config, {
               id,
             })

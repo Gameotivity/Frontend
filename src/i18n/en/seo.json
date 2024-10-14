@@ -1,29 +1,29 @@
 {
   "root": {
     "description": "Deploy a contract, add liquidity and bootstrap trading with one click",
-    "title": "FomoFactory",
+    "title": "DogDefi.fun",
     "subtitle": "Creating your own coin has never been easier!",
-    "siteName": "FomoFactory"
+    "siteName": "DogDeFi.fun"
   },
   "leaderboard": {
-    "title": "FomoFactory - Top Coins",
+    "title": "DogDefi.fun",
     "subtitle": "Top coins by market cap",
     "description": "Mint new coins to get on the leaderboard"
   },
   "new": {
-    "title": "FomoFactory - Mint New Coin",
+    "title": "DogDefi.fun - Mint New Coin",
     "subtitle": "Mint a new coin",
     "description": "Deploy a contract, add liquidity and bootstrap trading for a chance to get on the leaderboard"
   },
   "my": {
-    "title": "FomoFactory - My Coins"
+    "title": "DogDefi.fun - My Coins"
   },
   "faq": {
-    "title": "FomoFactory - FAQ"
+    "title": "DogDefi.fun - FAQ"
   },
   "coin": {
-    "title": "FomoFactory - {{ name }}",
-    "subtitle": "Check out {{ name }} on FomoFactory",
+    "title": "DogDefi.fun - {{ name }}",
+    "subtitle": "Check out {{ name }} on DogDefi.fun",
     "description": "Buy, sell, share with your frens for a chance to put it on the leaderboard!"
   }
 }

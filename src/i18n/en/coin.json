@@ -31,16 +31,16 @@
   "metadata": {
     "name": {
       "label": "Name",
-      "placeholder": "WASSUP"
+      "placeholder": "DOGDEFI"
     },
     "symbol": {
       "label": "Symbol",
-      "placeholder": "$WASSUP"
+      "placeholder": "$DOGS"
     },
     "description": {
       "label": "Description",
       "extra": "(max 140 characters)",
-      "placeholder": "$WASSUP on Base - The timeless meme from Bitconneeeect!"
+      "placeholder": "$DogDefi is on Base and BSC - The timeless meme from Bitconneeeect!"
     },
     "totalSupply": {
       "label": "Total Supply",
@@ -79,11 +79,11 @@
   "socials": {
     "twitter": {
       "label": "Twitter",
-      "placeholder": "@WASSUPonBASE"
+      "placeholder": "@DogDefi"
     },
     "telegram": {
       "label": "Telegram",
-      "placeholder": "@wassup_on_base"
+      "placeholder": "@DogDefi"
     },
     "website": {
       "label": "Website",

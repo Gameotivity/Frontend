@@ -19,7 +19,10 @@ const fetchPool = async (
   tokenAddress: `0x${string}`,
 ) => {
   if (!client) throw new Error('Failed to initialize client')
-
+  console.log(
+    'fomo factor address from pool.ts:',
+    import.meta.env[`VITE_FOMO_FACTORY_ADDRESS_${chainId}`],
+  )
   const [address, positionId] = await readContract(config, {
     address: import.meta.env[`VITE_FOMO_FACTORY_ADDRESS_${chainId}`],
     abi: fomoFactoryAbi,

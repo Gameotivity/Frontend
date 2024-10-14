@@ -252,7 +252,10 @@ const fetchTokenAddress = async (
   if (!creator) {
     throw new Error('Missing creator address')
   }
-
+  console.log(
+    'fomo factor address from queries/token.ts:',
+    import.meta.env[`VITE_FOMO_FACTORY_ADDRESS_${chainId}`],
+  )
   const address = await readContract(config, {
     address: import.meta.env[`VITE_FOMO_FACTORY_ADDRESS_${chainId}`],
     abi: fomoFactoryAbi,
@@ -273,7 +276,10 @@ const fetchAccountTokens = async (config: Config, chainId: number, account?: `0x
   if (!account) {
     return []
   }
-
+  console.log(
+    'fomo factor address from queries/token.ts:',
+    import.meta.env[`VITE_FOMO_FACTORY_ADDRESS_${chainId}`],
+  )
   const tokens = await readContract(config, {
     address: import.meta.env[`VITE_FOMO_FACTORY_ADDRESS_${chainId}`],
     abi: fomoFactoryAbi,
@@ -296,6 +302,10 @@ const fetchAccountTokens = async (config: Config, chainId: number, account?: `0x
 }
 
 const fetchTokens = async (config: Config, chainId: number) => {
+  console.log(
+    'fomo factor address from queries/token.ts:',
+    import.meta.env[`VITE_FOMO_FACTORY_ADDRESS_${chainId}`],
+  )
   const tokens = await readContract(config, {
     address: import.meta.env[`VITE_FOMO_FACTORY_ADDRESS_${chainId}`],
     abi: fomoFactoryAbi,
