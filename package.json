@@ -88,7 +88,7 @@
     "lint": "eslint \"./**/*.{js,cjs,ts,tsx}\" --max-warnings 0 --report-unused-disable-directives",
     "prepare": "husky install",
     "preview": "export IS_PREVIEW=true && vite build && vite preview --port 3000",
-    "start": "vite",
+    "start": "vite --host",
     "test": "DEBUG_PRINT_LIMIT=100000 vitest",
     "test:ui": "DEBUG_PRINT_LIMIT=100000 vitest --ui",
     "update-dependencies": "ncu -u && npm i",

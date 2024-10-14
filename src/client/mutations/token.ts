@@ -3,21 +3,21 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import { multicall } from '@wagmi/core'
 import {
   formatEther,
-  parseEther,
-  parseUnits,
-  parseEventLogs,
-  WalletClient,
   numberToHex,
+  parseEther,
+  parseEventLogs,
+  parseUnits,
+  WalletClient,
 } from 'viem'
 import { waitForTransactionReceipt } from 'viem/actions'
-import { Config, useAccount, useChainId, useConfig, usePublicClient, useWalletClient } from 'wagmi'
 import { publicActionsL2 } from 'viem/op-stack'
+import { Config, useAccount, useChainId, useConfig, usePublicClient, useWalletClient } from 'wagmi'
 
-import { FeeAmount } from '@uniswap/v3-sdk'
 import { calculateInitialTick } from '@/common/utils'
-import { fetchUsdEthAmount } from '../queries/eth'
 import { useWriteContract } from '@/common/utils/smartWallet'
+import { FeeAmount } from '@uniswap/v3-sdk'
 import { fomoFactoryAbi, iUniswapV3FactoryAbi, liquidityLockerAbi } from '../abi/generated'
+import { fetchUsdEthAmount } from '../queries/eth'
 
 async function addTokenToWallet(
   client: WalletClient | undefined,
