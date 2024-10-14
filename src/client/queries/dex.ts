@@ -7,8 +7,8 @@ import { Config, useChainId, useConfig } from 'wagmi'
 import { DexData } from '../models/dex'
 
 import { erc20Abi, fomoFactoryAbi } from '../abi/generated'
-import { fetchTokensData } from './token'
 import { Token } from '../models/token'
+import { fetchTokensData } from './token'
 
 interface Pool {
   id: string
@@ -100,111 +100,150 @@ export async function fetchTokensDexData(
   chainId: number,
   tokens: `0x${string}`[],
 ): Promise<DexData[]> {
-  console.log(
-    'fomo factor address from dex.ts:',
-    import.meta.env[`VITE_FOMO_FACTORY_ADDRESS_${chainId}`],
-  )
-  const request = tokens.flatMap((token) => {
-    return {
-      address: import.meta.env[`VITE_FOMO_FACTORY_ADDRESS_${chainId}`],
-      abi: fomoFactoryAbi,
-      functionName: 'poolMetadataOf',
-      args: [token],
-    }
-  })
-  const poolAddresses = (
-    await multicall(config, {
-      allowFailure: false,
-      contracts: request,
-    })
-  ).map((data: unknown) => (data as [`0x${string}`, bigint, number])[0] as `0x${string}`)
-
-  const response = async (addresses: `0x${string}`[]) => {
-    return await fetch(
-      `https://api.geckoterminal.com/api/v2/networks/base/pools/multi/${addresses.join(',')}`,
+  try {
+    console.log(
+      'fomo factor address from dex.ts:',
+      import.meta.env[`VITE_FOMO_FACTORY_ADDRESS_${chainId}`],
     )
-  }
 
-  const chunkSize = 30
-  let data: Pool[] = []
-  for (let i = 0; i < poolAddresses.length; i += chunkSize) {
-    const chunk = poolAddresses.slice(i, i + chunkSize)
-    const resp = await response(chunk)
-    const respData = (await resp.json()) as DexResponse
-    if (respData.data) {
-      data = data.concat(respData.data)
-    }
-  }
+    // Step 1: Multicall request setup
+    const request = tokens.flatMap((token) => {
+      return {
+        address: import.meta.env[`VITE_FOMO_FACTORY_ADDRESS_${chainId}`],
+        abi: fomoFactoryAbi,
+        functionName: 'poolMetadataOf',
+        args: [token],
+      }
+    })
+    console.log('Multicall request:', request)
 
-  if (!data) {
-    return tokens.map((address, idx) => ({ address, poolAddress: poolAddresses[idx] })) as DexData[]
-  }
-
-  const pools = new Map(
-    data.map((pool) => {
-      return [pool.id.toLowerCase(), pool]
-    }),
-  )
-
-  const poolRequest = poolAddresses.flatMap((address, idx) => [
-    {
-      address: tokens[idx]!!,
-      abi: erc20Abi,
-      functionName: 'balanceOf',
-      args: [address],
-    },
-    {
-      address: tokens[idx]!!,
-      abi: erc20Abi,
-      functionName: 'decimals',
-    },
-    {
-      address: import.meta.env[`VITE_WETH_ADDRESS_${chainId}`],
-      abi: erc20Abi,
-      functionName: 'balanceOf',
-      args: [address],
-    },
-  ])
-  const poolBalanceData = await multicall(config, {
-    allowFailure: false,
-    contracts: poolRequest,
-  })
-  const poolBalances = poolBalanceData.reduce((acc, _, idx) => {
-    if (idx % 3 === 0) {
-      acc.push({
-        tokenBalance: Number(
-          formatUnits(poolBalanceData[idx] as bigint, poolBalanceData[idx + 1] as number),
-        ),
-        ethBalance: Number(formatEther(poolBalanceData[idx + 2] as bigint)),
+    // Step 2: Multicall execution
+    const poolAddresses = (
+      await multicall(config, {
+        allowFailure: false,
+        contracts: request,
       })
-    }
-    return acc
-  }, [] as PoolBalance[])
-  const poolBalancesMap = new Map(
-    poolAddresses.map((_, idx) => {
-      return [tokens[idx]!!, poolBalances[idx]!!]
-    }),
-  )
+    ).map((data: unknown) => (data as [`0x${string}`, bigint, number])[0] as `0x${string}`)
+    console.log('Pool addresses:', poolAddresses)
 
-  const tokensData = await fetchTokensData(config, tokens, false)
-  const tokensMap = new Map(
-    tokensData.map((token) => {
-      return [token.address, token]
-    }),
-  )
-
-  return await Promise.all(
-    tokens.map(async (token, idx) => {
-      return await extractDexData(
-        chainId,
-        tokensMap.get(token)!!,
-        poolAddresses[idx]!!,
-        poolBalancesMap.get(token)!!,
-        pools.get(`base_${poolAddresses[idx]!!.toLowerCase()}`),
+    // Step 3: Fetching from GeckoTerminal API
+    const response = async (addresses: `0x${string}`[]) => {
+      return await fetch(
+        `https://api.geckoterminal.com/api/v2/networks/base/pools/multi/${addresses.join(',')}`,
       )
-    }),
-  )
+    }
+
+    const chunkSize = 30
+    let data: Pool[] = []
+    for (let i = 0; i < poolAddresses.length; i += chunkSize) {
+      const chunk = poolAddresses.slice(i, i + chunkSize)
+      console.log('Fetching data for chunk:', chunk)
+
+      const resp = await response(chunk)
+      const respData = (await resp.json()) as DexResponse
+      console.log('GeckoTerminal API response:', respData)
+
+      if (respData.data) {
+        data = data.concat(respData.data)
+      }
+    }
+    console.log('Fetched pool data:', data)
+
+    // Step 4: Handle missing data
+    if (!data.length) {
+      console.warn('No pool data returned')
+      return tokens.map((address, idx) => ({ address, poolAddress: poolAddresses[idx] })) as DexData[]
+    }
+
+    const pools = new Map(
+      data.map((pool) => {
+        return [pool.id.toLowerCase(), pool]
+      }),
+    )
+    console.log('Pools map:', pools)
+
+    // Step 5: Multicall for pool balances and token details
+    const poolRequest = poolAddresses.flatMap((address, idx) => [
+      {
+        address: tokens[idx]!!,
+        abi: erc20Abi,
+        functionName: 'balanceOf',
+        args: [address],
+      },
+      {
+        address: tokens[idx]!!,
+        abi: erc20Abi,
+        functionName: 'decimals',
+      },
+      {
+        address: import.meta.env[`VITE_WETH_ADDRESS_${chainId}`],
+        abi: erc20Abi,
+        functionName: 'balanceOf',
+        args: [address],
+      },
+    ])
+    console.log('Multicall request for pool balances:', poolRequest)
+
+    const poolBalanceData = await multicall(config, {
+      allowFailure: false,
+      contracts: poolRequest,
+    })
+    console.log('Pool balance data:', poolBalanceData)
+
+    const poolBalances = poolBalanceData.reduce((acc, _, idx) => {
+      if (idx % 3 === 0) {
+        acc.push({
+          tokenBalance: Number(
+            formatUnits(poolBalanceData[idx] as bigint, poolBalanceData[idx + 1] as number),
+          ),
+          ethBalance: Number(formatEther(poolBalanceData[idx + 2] as bigint)),
+        })
+      }
+      return acc
+    }, [] as PoolBalance[])
+    console.log('Pool balances:', poolBalances)
+
+    const poolBalancesMap = new Map(
+      poolAddresses.map((_, idx) => {
+        return [tokens[idx]!!, poolBalances[idx]!!]
+      }),
+    )
+    console.log('Pool balances map:', poolBalancesMap)
+
+    // Step 6: Fetch token data and create token map
+    const tokensData = await fetchTokensData(config, tokens, false)
+    console.log('Fetched token data:', tokensData)
+
+    const tokensMap = new Map(
+      tokensData.map((token) => {
+        return [token.address, token]
+      }),
+    )
+    console.log('Tokens map:', tokensMap)
+
+    // Step 7: Extract Dex data
+    const dexData = await Promise.all(
+      tokens.map(async (token, idx) => {
+        const dexInfo = await extractDexData(
+          chainId,
+          tokensMap.get(token)!!,
+          poolAddresses[idx]!!,
+          poolBalancesMap.get(token)!!,
+          pools.get(`base_${poolAddresses[idx]!!.toLowerCase()}`),
+        )
+        console.log('Dex data for token:', token, dexInfo)
+        return dexInfo
+      }),
+    )
+    console.log('Final Dex data:', dexData)
+
+    return dexData
+  } catch (error) {
+    console.error('An error occurred in fetchTokensDexData:', error)
+    throw error
+  }
 }
+
 
 async function fetchTokenDexData(config: Config, chainId: number, token: `0x${string}`) {
   return (await fetchTokensDexData(config, chainId, [token]))[0]

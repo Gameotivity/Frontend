@@ -175,11 +175,11 @@ export const useCreateToken = (options?: {
       console.log('data:', data)
       const args = await prepareCreateToken(config, chainId, data)
       console.log('args:', args)
-      try {
-        await writeContract(config, args)
-      } catch (e) {
-        console.log('write contract error:', e)
-      }
+      // try {
+      //   await writeContract(config, args)
+      // } catch (e) {
+      //   console.log('write contract error:', e)
+      // }
       const hash = await writeContract(config, args)
       console.log('hash:', hash)
       const receipt = await waitForTransactionReceipt(client, { hash })
