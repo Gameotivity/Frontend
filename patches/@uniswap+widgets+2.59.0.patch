@@ -1,0 +1,612 @@
+diff --git a/node_modules/@uniswap/widgets/dist/index-53ec290b.js b/node_modules/@uniswap/widgets/dist/index-53ec290b.js
+index e7da428..1192292 100644
+--- a/node_modules/@uniswap/widgets/dist/index-53ec290b.js
++++ b/node_modules/@uniswap/widgets/dist/index-53ec290b.js
+@@ -1230,7 +1230,7 @@ function H1(props) {
+   return /*#__PURE__*/React.createElement(TextWrapper, _extends$b({
+     className: "headline headline-1",
+     fontSize: 36,
+-    fontWeight: 500,
++    fontWeight: 700,
+     lineHeight: "44px",
+     noWrap: true
+   }, props));
+@@ -1239,7 +1239,7 @@ function H3(props) {
+   return /*#__PURE__*/React.createElement(TextWrapper, _extends$b({
+     className: "headline headline-3",
+     fontSize: 20,
+-    fontWeight: 500,
++    fontWeight: 700,
+     lineHeight: "20px",
+     noWrap: true
+   }, props));
+@@ -1248,7 +1248,7 @@ function H4(props) {
+   return /*#__PURE__*/React.createElement(TextWrapper, _extends$b({
+     className: "headline headline-4",
+     fontSize: 20,
+-    fontWeight: 500,
++    fontWeight: 700,
+     lineHeight: "28px",
+     noWrap: true
+   }, props));
+@@ -1257,7 +1257,7 @@ function Subhead1(props) {
+   return /*#__PURE__*/React.createElement(TextWrapper, _extends$b({
+     className: "subhead subhead-1",
+     fontSize: 16,
+-    fontWeight: 500,
++    fontWeight: 700,
+     lineHeight: "24px",
+     noWrap: true
+   }, props));
+@@ -1266,7 +1266,7 @@ function Subhead2(props) {
+   return /*#__PURE__*/React.createElement(TextWrapper, _extends$b({
+     className: "subhead subhead-2",
+     fontSize: 14,
+-    fontWeight: 500,
++    fontWeight: 700,
+     lineHeight: "20px",
+     noWrap: true
+   }, props));
+@@ -1275,7 +1275,7 @@ function Body1(props) {
+   return /*#__PURE__*/React.createElement(TextWrapper, _extends$b({
+     className: "body body-1",
+     fontSize: 16,
+-    fontWeight: 400,
++    fontWeight: 500,
+     lineHeight: "24px"
+   }, props));
+ }
+@@ -1284,7 +1284,7 @@ function Body2(props) {
+   return /*#__PURE__*/React.createElement(TextWrapper, _extends$b({
+     className: "body body-2",
+     fontSize: 14,
+-    fontWeight: 400,
++    fontWeight: 500,
+     lineHeight: "".concat(Body2LineHeightRem, "rem")
+   }, props));
+ }
+@@ -1292,7 +1292,7 @@ function Caption$1(props) {
+   return /*#__PURE__*/React.createElement(TextWrapper, _extends$b({
+     className: "caption",
+     fontSize: 12,
+-    fontWeight: 400,
++    fontWeight: 500,
+     lineHeight: "16px"
+   }, props));
+ }
+@@ -1309,8 +1309,8 @@ function ButtonLarge(props) {
+   return /*#__PURE__*/React.createElement(TextWrapper, _extends$b({
+     className: "button button-large",
+     fontSize: 20,
+-    fontWeight: 600,
+-    lineHeight: "24px",
++    fontWeight: 700,
++    lineHeight: "16px",
+     noWrap: true
+   }, props));
+ }
+@@ -1318,8 +1318,8 @@ function ButtonMedium(props) {
+   return /*#__PURE__*/React.createElement(TextWrapper, _extends$b({
+     className: "button button-medium",
+     fontSize: 16,
+-    fontWeight: 500,
+-    lineHeight: "16px",
++    fontWeight: 600,
++    lineHeight: "14px",
+     noWrap: true
+   }, props));
+ }
+@@ -1328,22 +1328,22 @@ function ButtonSmall(props) {
+     className: "button button-small",
+     fontSize: 14,
+     fontWeight: 600,
+-    lineHeight: "14px",
++    lineHeight: "12px",
+     noWrap: true
+   }, props));
+ }
+ function TransitionButton(props) {
+   var className = "button button-".concat(props.buttonSize);
+   var fontSize = {
+-    small: 14,
+-    medium: 16,
+-    large: 20
++    small: 12,
++    medium: 14,
++    large: 16
+   }[props.buttonSize];
+   var lineHeight = "".concat(fontSize, "px");
+   return /*#__PURE__*/React.createElement(TransitionTextWrapper, _extends$b({
+     className: className,
+     fontSize: fontSize,
+-    fontWeight: 600,
++    fontWeight: 700,
+     lineHeight: lineHeight,
+     noWrap: true
+   }, props));
+@@ -1355,7 +1355,7 @@ function Code(props) {
+   return /*#__PURE__*/React.createElement(TextWrapper, _extends$b({
+     className: "code",
+     fontSize: 12,
+-    fontWeight: 400,
++    fontWeight: 500,
+     lineHeight: "16px",
+     fontFamily: fontFamilyCode
+   }, props));
+@@ -1384,7 +1384,9 @@ var lightTheme = _objectSpread$k(_objectSpread$k({
+   container: 'hsl(0, 0%, 100%)',
+   module: 'hsl(231, 54%, 97%)',
+   interactive: 'hsl(227, 70%, 95%)',
++  action: 'hsl(227, 70%, 95%)',
+   outline: 'hsla(225, 18%, 44%, 0.24)',
++  border: 'hsla(225, 18%, 44%, 0.24)',
+   dialog: white,
+   scrim: 'hsla(224, 37%, 8%, 0.6)',
+   // text
+@@ -1393,6 +1395,7 @@ var lightTheme = _objectSpread$k(_objectSpread$k({
+   secondary: 'hsl(227, 18%, 55%)',
+   hint: 'hsl(226, 24%, 67%)',
+   onInteractive: black,
++  onAction: black,
+   deepShadow: 'hsla(234, 17%, 24%, 0.04), hsla(234, 17%, 24%, 0.02), hsla(234, 17%, 24%, 0.04)',
+   networkDefaultShadow: 'hsla(328, 97%, 53%, 0.12)'
+ }, stateColors), {}, {
+@@ -1407,7 +1410,9 @@ var darkTheme = _objectSpread$k(_objectSpread$k({
+   container: 'hsla(224, 37%, 8%, 1)',
+   module: 'hsl(222, 37%, 12%)',
+   interactive: 'hsla(223, 28%, 22%, 1)',
++  action: 'hsla(223, 28%, 22%, 1)',
+   outline: 'hsl(224, 33%, 16%)',
++  border: 'hsl(224, 33%, 16%)',
+   dialog: black,
+   scrim: 'hsla(224, 33%, 16%, 0.5)',
+   // text
+@@ -1416,6 +1421,7 @@ var darkTheme = _objectSpread$k(_objectSpread$k({
+   secondary: 'hsl(227, 21%, 67%)',
+   hint: 'hsla(225, 18%, 44%)',
+   onInteractive: white,
++  onAction: white,
+   deepShadow: 'hsla(0, 0%, 0%, 0.32), hsla(0, 0%, 0%, 0.24), hsla(0, 0%, 0%, 0.24)',
+   networkDefaultShadow: 'hsla(221, 96%, 64%, 0.16)'
+ }, stateColors), {}, {
+@@ -1462,7 +1468,7 @@ function Provider$8(_ref) {
+ 
+ function toDefaultTheme(theme) {
+   return _objectSpread$k(_objectSpread$k({}, theme), {}, {
+-    borderRadius: clamp(theme.borderRadius ? theme.borderRadius : defaultBorderRadius),
++    borderRadius: theme.borderRadius ? theme.borderRadius : defaultBorderRadius,
+     onHover: function onHover(color) {
+       return color === theme.primary ? transparentize(0.4, theme.primary) : mix(0.06, theme.primary, color);
+     }
+@@ -1794,17 +1800,17 @@ var Button$1 = _styled(BaseButton).withConfig({
+   componentId: "sc-1soikk5-1"
+ })(["background-color:", ";border:1px solid transparent;color:", ";:enabled:hover{background-color:", ";}"], function (_ref) {
+   var _ref$color = _ref.color,
+-      color = _ref$color === void 0 ? 'interactive' : _ref$color,
++      color = _ref$color === void 0 ? 'action' : _ref$color,
+       theme = _ref.theme;
+   return theme[color];
+ }, function (_ref2) {
+   var _ref2$color = _ref2.color,
+-      color = _ref2$color === void 0 ? 'interactive' : _ref2$color,
++      color = _ref2$color === void 0 ? 'action' : _ref2$color,
+       theme = _ref2.theme;
+-  return color === 'interactive' && theme.onInteractive;
++  return color === 'action' && theme.onAction;
+ }, function (_ref3) {
+   var _ref3$color = _ref3.color,
+-      color = _ref3$color === void 0 ? 'interactive' : _ref3$color,
++      color = _ref3$color === void 0 ? 'action' : _ref3$color,
+       theme = _ref3.theme;
+   return theme.onHover(theme[color]);
+ });
+@@ -9304,7 +9310,7 @@ var CHAIN_INFO = (_CHAIN_INFO = {}, _defineProperty(_CHAIN_INFO, SupportedChainI
+   blockWaitMsBeforeWarning: 1500000,
+   bridge: 'https://bridge.base.org/',
+   docs: 'https://docs.base.org/',
+-  explorer: 'https://basescan.org/',
++  explorer: 'https://base.blockscout.com/',
+   infoLink: 'https://info.uniswap.org/#/base/',
+   label: 'Base',
+   logoUrl: BaseLogo,
+@@ -12083,12 +12089,12 @@ var StyledButton = /*#__PURE__*/_styled(Button$1).withConfig({
+   return narrow ? theme.borderRadius.small : theme.borderRadius.medium;
+ }, function (_ref2) {
+   var narrow = _ref2.narrow;
+-  return narrow ? '2.5rem' : '3.5rem';
++  return narrow ? '2.5rem' : '2.5rem';
+ }, AnimationSpeed.Medium, AnimationSpeed.Medium, AnimationSpeed.Medium, function (_ref3) {
+   var theme = _ref3.theme,
+       disabled = _ref3.disabled,
+       shouldUseDisabledColor = _ref3.shouldUseDisabledColor;
+-  return disabled && (shouldUseDisabledColor ? css(_templateObject$7 || (_templateObject$7 = _taggedTemplateLiteral(["\n          background-color: ", ";\n        "])), theme.interactive) : css(_templateObject2$2 || (_templateObject2$2 = _taggedTemplateLiteral(["\n          opacity: 0.6;\n        "]))));
++  return disabled && (shouldUseDisabledColor ? css(_templateObject$7 || (_templateObject$7 = _taggedTemplateLiteral(["\n          background-color: ", ";\n        opacity: 0.5;\n        "])), theme.action) : css(_templateObject2$2 || (_templateObject2$2 = _taggedTemplateLiteral(["\n          opacity: 0.5;\n        "]))));
+ });
+ 
+ var ActionRow = /*#__PURE__*/_styled(Row).withConfig({
+@@ -12109,7 +12115,7 @@ var actionCss = css(_templateObject4$1 || (_templateObject4$1 = _taggedTemplateL
+ var Overlay = /*#__PURE__*/_styled(Row).withConfig({
+   displayName: "ActionButton__Overlay",
+   componentId: "sc-xgl46p-2"
+-})(["border-radius:", "rem;flex-flow:row-reverse nowrap;margin-top:0.25rem;min-height:", ";transition:padding ", " ease-out;", ""], function (_ref6) {
++})(["border-radius:", "rem;flex-flow:row-reverse nowrap;margin-top:1rem;min-height:", ";transition:padding ", " ease-out;", ""], function (_ref6) {
+   var theme = _ref6.theme,
+       narrow = _ref6.narrow;
+   return narrow ? theme.borderRadius.small : theme.borderRadius.medium;
+@@ -12137,7 +12143,7 @@ function ActionButton(_ref9) {
+ 
+   var textColor = useMemo(function () {
+     if (disabled) {
+-      return 'primary';
++      return 'onAction';
+     }
+ 
+     switch (color) {
+@@ -12297,7 +12303,7 @@ var StyledWrapper = /*#__PURE__*/_styled(Column).withConfig({
+   return theme.module;
+ }, function (_ref2) {
+   var theme = _ref2.theme;
+-  return theme.borderRadius.medium;
++  return theme.borderRadius.large;
+ });
+ 
+ var TitleRow = /*#__PURE__*/_styled(Row).withConfig({
+@@ -14482,7 +14488,7 @@ function Header(_ref) {
+   }, title && /*#__PURE__*/React.createElement(Row, {
+     gap: 0.5,
+     "data-testid": "header-title"
+-  }, /*#__PURE__*/React.createElement(Subhead1, null, title)), children && /*#__PURE__*/React.createElement(Row, {
++  }, /*#__PURE__*/React.createElement(H3, null, title)), children && /*#__PURE__*/React.createElement(Row, {
+     gap: 1,
+     "data-testid": "header-children"
+   }, children));
+@@ -15068,10 +15074,7 @@ function BottomSheetModal(_ref5) {
+     forceContain: true
+   }, /*#__PURE__*/React.createElement(React.Fragment, null, title && /*#__PURE__*/React.createElement(Header$1, {
+     title: /*#__PURE__*/React.createElement(Trans, {
+-      id: "{title}",
+-      values: {
+-        title: title
+-      }
++      id: title
+     }),
+     closeButton: /*#__PURE__*/React.createElement(StyledXButton$1, null)
+   }), children))));
+@@ -15133,7 +15136,7 @@ function ResponsiveDialog(_ref) {
+       showArrow: false,
+       offset: 10,
+       show: open,
+-      placement: "top-end",
++      placement: "bottom",
+       content: children
+     }, anchor !== null && anchor !== void 0 ? anchor : /*#__PURE__*/React.createElement(IconButton, {
+       icon: Info
+@@ -15398,9 +15401,9 @@ function TokenButton$1(_ref4) {
+   }, value ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Logo, {
+     currency: value,
+     symbol: value.symbol
+-  }), /*#__PURE__*/React.createElement(ButtonLarge, {
++  }), /*#__PURE__*/React.createElement(ButtonMedium, {
+     color: 'currentColor'
+-  }, /*#__PURE__*/React.createElement("span", null, value.symbol))) : /*#__PURE__*/React.createElement(ButtonLarge, {
++  }, /*#__PURE__*/React.createElement("span", null, value.symbol))) : /*#__PURE__*/React.createElement(ButtonMedium, {
+     color: 'onAccent',
+     style: {
+       maxWidth: '10rem',
+@@ -15409,10 +15412,10 @@ function TokenButton$1(_ref4) {
+     }
+   }, /*#__PURE__*/React.createElement(Trans, {
+     id: "Select token"
+-  })), /*#__PURE__*/React.createElement(ChevronDown, {
++  })), /*#__PURE__*/!disabled ? React.createElement(ChevronDown, {
+     strokeWidth: 2,
+     color: value ? 'primary' : 'onAccent'
+-  })));
++  }) : null));
+ }
+ 
+ function useNativeEvent(element, type, listener, options) {
+@@ -15815,7 +15818,7 @@ var TokenSelectContainer = /*#__PURE__*/_styled.div.withConfig({
+   componentId: "sc-1krctvh-1"
+ })(["border-radius:", "rem;min-height:", ";min-width:", ";overflow:hidden;padding:0.5rem 0 0;@supports (overflow:clip){overflow:'clip';}"], function (_ref) {
+   var theme = _ref.theme;
+-  return theme.borderRadius.medium;
++  return theme.borderRadius.large;
+ }, function ($pageCentered) {
+   return $pageCentered ? 'unset' : '100%';
+ }, function (_ref2) {
+@@ -16051,6 +16054,7 @@ var TokenInput = /*#__PURE__*/forwardRef(function TokenInput(_ref2, ref) {
+       approved = _ref2.approved,
+       loading = _ref2.loading,
+       disabled = _ref2.disabled,
++      disableTokenSelection = _ref2.disableTokenSelection,
+       onChangeInput = _ref2.onChangeInput,
+       onChangeCurrency = _ref2.onChangeCurrency,
+       children = _ref2.children,
+@@ -16094,7 +16098,7 @@ var TokenInput = /*#__PURE__*/forwardRef(function TokenInput(_ref2, ref) {
+     field: field,
+     value: currency,
+     approved: approved,
+-    disabled: disabled,
++    disabled: disabled || disableTokenSelection,
+     onSelect: onSelect
+   })), children);
+ });
+@@ -16112,25 +16116,26 @@ var Balance = /*#__PURE__*/_styled(Body2).withConfig({
+ var InputColumn$1 = /*#__PURE__*/_styled(Column).withConfig({
+   displayName: "Input__InputColumn",
+   componentId: "sc-ud81g8-2"
+-})(["background-color:", ";border-radius:", "rem;margin-bottom:0.25rem;padding:", ";position:relative;&:before{background-size:100%;border:1px solid transparent;border-radius:inherit;box-sizing:border-box;content:'';height:100%;left:0;pointer-events:none;position:absolute;top:0;transition:125ms ease border-color;width:100%;}", ""], function (_ref) {
++})(["background-color:", ";border-radius:", "rem;border-width:1px;margin-bottom:0.25rem;padding:", ";position:relative;&:before{background-size:100%;border:1px solid transparent;border-radius:inherit;box-sizing:border-box;content:'';height:100%;left:0;pointer-events:none;position:absolute;top:0;transition:300ms ease-in-out border-color;width:100%;}", ""], function (_ref) {
+   var theme = _ref.theme;
+   return theme.module;
+ }, function (_ref2) {
+   var theme = _ref2.theme;
+-  return theme.borderRadius.medium;
++  return theme.borderRadius.large;
+ }, function (_ref3) {
+   var isWide = _ref3.isWide;
+   return isWide ? '1rem 0' : '1rem 0 1.5rem';
+ }, function (_ref4) {
+   var theme = _ref4.theme,
+       disableHover = _ref4.disableHover;
+-  return !disableHover && " &:hover:before {\n        border-color: ".concat(theme.interactive, ";\n      }\n\n      &:focus-within:before {\n        border-color: ").concat(theme.networkDefaultShadow, ";\n      }");
++  return !disableHover && " &:hover:before {\n        border-color: ".concat(theme.focus, ";\n      }\n\n      &:focus-within:before {\n        border-color: ").concat(theme.focus, ";\n      }");
+ });
+ function FieldWrapper(_ref6) {
+   var field = _ref6.field,
+       maxAmount = _ref6.maxAmount,
+       approved = _ref6.approved,
+       fiatValueChange = _ref6.fiatValueChange,
++      disableTokenSelection = _ref6.disableTokenSelection,
+       className = _ref6.className,
+       subheader = _ref6.subheader;
+ 
+@@ -16203,6 +16208,7 @@ function FieldWrapper(_ref6) {
+     loading: isLoading,
+     approved: approved,
+     disabled: isDisabled,
++    disableTokenSelection: disableTokenSelection,
+     onChangeInput: updateAmount,
+     onChangeCurrency: updateCurrency
+   }, /*#__PURE__*/React.createElement(Body2, {
+@@ -16227,7 +16233,7 @@ function FieldWrapper(_ref6) {
+     id: "Max"
+   }))))))));
+ }
+-function Input$2() {
++function Input$2(_ref) {
+   var _useSwapInfo2 = useSwapInfo(),
+       _useSwapInfo2$Field$I = _useSwapInfo2[Field.INPUT],
+       balance = _useSwapInfo2$Field$I.balance,
+@@ -16246,6 +16252,7 @@ function Input$2() {
+     field: Field.INPUT,
+     maxAmount: maxAmount,
+     approved: approvalState === SwapApprovalState.APPROVED,
++    disableTokenSelection: _ref.disableTokenSelection,
+     subheader:
+     /*i18n*/
+     i18n._("You pay")
+@@ -16268,7 +16275,7 @@ var OutputWrapper = /*#__PURE__*/_styled(FieldWrapper).withConfig({
+   return hasColor === null ? "color ".concat(AnimationSpeed.Medium, " ease-in, stroke ").concat(AnimationSpeed.Medium, " ease-in") : undefined;
+ });
+ 
+-function Output() {
++function Output(_ref) {
+   var _useSwapInfo = useSwapInfo(),
+       fiatValueChange = _useSwapInfo.fiatValueChange;
+ 
+@@ -16289,6 +16296,7 @@ function Output() {
+     field: Field.OUTPUT,
+     fiatValueChange: fiatValueChange,
+     hasColor: hasColor,
++    disableTokenSelection: _ref.disableTokenSelection,
+     subheader:
+     /*i18n*/
+     i18n._("You receive")
+@@ -16298,26 +16306,29 @@ function Output() {
+ var Underlayer = /*#__PURE__*/_styled.div.withConfig({
+   displayName: "ReverseButton__Underlayer",
+   componentId: "sc-d3cn9-0"
+-})(["background-color:", ";border-radius:", "em;height:48px;left:50%;position:absolute;transform:translate(-50%,calc(-50% - 2px));width:48px;z-index:", ";"], function (_ref) {
++})(["background-color:", ";border-radius:", "rem;height:48px;left:50%;position:absolute;transform:translate(-50%,calc(-50% - 2px));width:48px;z-index:", ";"], function (_ref) {
+   var theme = _ref.theme;
+   return theme.container;
+ }, function (_ref2) {
+   var theme = _ref2.theme;
+-  return theme.borderRadius.medium;
++  return theme.borderRadius.large;
+ }, Layer.OVERLAY);
+ 
+ var StyledReverseButton = /*#__PURE__*/_styled(Button$1).withConfig({
+   displayName: "ReverseButton__StyledReverseButton",
+   componentId: "sc-d3cn9-1"
+-})(["align-items:center;background-color:", ";border:4px solid ", ";border-radius:", "rem;display:flex;justify-content:center;width:100%;"], function (_ref3) {
++})(["align-items:center;background-color:", ";border:1px solid ", ";border-radius:", "rem;color:", ";display:flex;justify-content:center;width:100%;"], function (_ref3) {
+   var theme = _ref3.theme;
+-  return theme.module;
++  return theme.interactive;
+ }, function (_ref4) {
+   var theme = _ref4.theme;
+   return theme.container;
+ }, function (_ref5) {
+   var theme = _ref5.theme;
+   return theme.borderRadius.medium;
++}, function (_ref6) {
++  var theme = _ref6.theme;
++  return theme.onInteractive;
+ });
+ 
+ function ReverseButton() {
+@@ -16862,7 +16873,7 @@ function Settings() {
+ }
+ 
+ var _ETHERSCAN_PREFIXES;
+-var ETHERSCAN_PREFIXES = (_ETHERSCAN_PREFIXES = {}, _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.MAINNET, 'https://etherscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.ROPSTEN, 'https://ropsten.etherscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.RINKEBY, 'https://rinkeby.etherscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.GOERLI, 'https://goerli.etherscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.KOVAN, 'https://kovan.etherscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.OPTIMISM, 'https://optimistic.etherscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.OPTIMISM_GOERLI, 'https://goerli-optimism.etherscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.POLYGON_MUMBAI, 'https://mumbai.polygonscan.com'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.POLYGON, 'https://polygonscan.com'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.CELO, 'https://celoscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.CELO_ALFAJORES, 'https://alfajores.celoscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.BNB, 'https://bscscan.com'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.BASE, 'https://basescan.org'), _ETHERSCAN_PREFIXES);
++var ETHERSCAN_PREFIXES = (_ETHERSCAN_PREFIXES = {}, _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.MAINNET, 'https://etherscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.ROPSTEN, 'https://ropsten.etherscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.RINKEBY, 'https://rinkeby.etherscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.GOERLI, 'https://goerli.etherscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.KOVAN, 'https://kovan.etherscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.OPTIMISM, 'https://optimistic.etherscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.OPTIMISM_GOERLI, 'https://goerli-optimism.etherscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.POLYGON_MUMBAI, 'https://mumbai.polygonscan.com'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.POLYGON, 'https://polygonscan.com'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.CELO, 'https://celoscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.CELO_ALFAJORES, 'https://alfajores.celoscan.io'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.BNB, 'https://bscscan.com'), _defineProperty(_ETHERSCAN_PREFIXES, SupportedChainId.BASE, 'https://base.blockscout.com'), _ETHERSCAN_PREFIXES);
+ var ExplorerDataType;
+ /**
+  * Return the explorer link for the given data and data type
+@@ -17829,7 +17840,7 @@ function SummaryDialog(props) {
+     value: boundary
+   }, /*#__PURE__*/React.createElement(Header$1, {
+     title: /*#__PURE__*/React.createElement(Trans, {
+-      id: "Review swap"
++      id: "Review Swap"
+     })
+   }), /*#__PURE__*/React.createElement(Body$1, {
+     flex: true,
+@@ -17889,7 +17900,7 @@ function TransactionStatus(_ref) {
+     showIcon: false,
+     color: "active"
+   }, /*#__PURE__*/React.createElement(Trans, {
+-    id: "View on Etherscan"
++    id: "View on Explorer"
+   }))), /*#__PURE__*/React.createElement(ActionButton, {
+     onClick: onClose
+   }, /*#__PURE__*/React.createElement(Trans, {
+@@ -18912,28 +18923,13 @@ function useUniversalRouterSwapCallback(trade, options) {
+               }, value && !isZero(value) ? {
+                 value: toHex$1(value)
+               } : {});
+-              _context.next = 12;
++              _context.next = 15;
+               return sendTransaction(provider, tx, TX_GAS_MARGIN);
+ 
+-            case 12:
+-              response = _context.sent;
+-
+-              if (!(tx.data !== response.data)) {
+-                _context.next = 15;
+-                break;
+-              }
+-
+-              throw new DismissableError({
+-                message:
+-                /*i18n*/
+-                i18n._("Your swap was modified through your wallet. If this was a mistake, please cancel immediately or risk losing your funds."),
+-                error: 'Swap was modified in wallet.'
+-              });
+-
+             case 15:
+               return _context.abrupt("return", {
+                 type: TransactionType.SWAP,
+-                response: response,
++                response: _context.sent,
+                 tradeType: trade.tradeType,
+                 trade: trade,
+                 slippageTolerance: options.slippageTolerance
+@@ -19270,9 +19266,9 @@ function SwapButton(_ref) {
+     onClick: onClick,
+     disabled: disabled
+   }, missingToken ? /*#__PURE__*/React.createElement(Trans, {
+-    id: "Select token"
++    id: "Select Token"
+   }) : /*#__PURE__*/React.createElement(Trans, {
+-    id: "Review swap"
++    id: "Review Swap"
+   })), trade && /*#__PURE__*/React.createElement(ResponsiveDialog, {
+     open: open,
+     setOpen: setOpen
+@@ -20483,7 +20479,7 @@ var StyledExpando = /*#__PURE__*/_styled(Expando).withConfig({
+   return theme.outline;
+ }, function (_ref2) {
+   var theme = _ref2.theme;
+-  return theme.borderRadius.medium;
++  return theme.borderRadius.large;
+ });
+ 
+ var COLLAPSED_TOOLBAR_HEIGHT_REM = 3;
+@@ -20824,7 +20820,11 @@ function Swap(props) {
+     ref: setWrapper
+   }, /*#__PURE__*/React.createElement(PopoverBoundaryProvider, {
+     value: wrapper
+-  }, /*#__PURE__*/React.createElement(Input$2, null), /*#__PURE__*/React.createElement(ReverseButton, null), /*#__PURE__*/React.createElement(Output, null), /*#__PURE__*/React.createElement(Toolbar$1, null), useBrandedFooter() && /*#__PURE__*/React.createElement(BrandedFooter, null)))), displayTx && /*#__PURE__*/React.createElement(Dialog, {
++  }, /*#__PURE__*/React.createElement(Input$2, {
++    disableTokenSelection: props.disableTokenSelection
++  }), /*#__PURE__*/React.createElement(ReverseButton, null), /*#__PURE__*/React.createElement(Output, {
++    disableTokenSelection: props.disableTokenSelection
++  }), /*#__PURE__*/React.createElement(Toolbar$1, null), useBrandedFooter() && /*#__PURE__*/React.createElement(BrandedFooter, null)))), displayTx && /*#__PURE__*/React.createElement(Dialog, {
+     color: "dialog"
+   }, /*#__PURE__*/React.createElement(TransactionStatusDialog, {
+     tx: displayTx,
+@@ -21306,7 +21306,7 @@ var StyledWidgetWrapper = /*#__PURE__*/_styled.div.withConfig({
+   return theme.container;
+ }, function (_ref2) {
+   var theme = _ref2.theme;
+-  return "1px solid ".concat(theme.outline);
++  return "1px solid ".concat(theme.border);
+ }, function (_ref3) {
+   var theme = _ref3.theme;
+   return theme.borderRadius.large;
+@@ -21454,12 +21454,12 @@ var TitleColumn = /*#__PURE__*/_styled(Column).withConfig({
+ var InputColumn = /*#__PURE__*/_styled(Column).withConfig({
+   displayName: "Skeleton__InputColumn",
+   componentId: "sc-1ra2yb8-4"
+-})(["background-color:", ";border-radius:", "rem;display:flex;gap:1.875rem;margin-bottom:0.25rem;padding:0.75rem;padding-bottom:3.25rem;padding-top:3.25rem;"], function (_ref5) {
++})(["background-color:", ";border-radius:", "rem;border-width: 1px;display:flex;gap:1.875rem;margin-bottom:0.25rem;padding:0.75rem;padding-bottom:3.25rem;padding-top:3.25rem;"], function (_ref5) {
+   var theme = _ref5.theme;
+   return theme.module;
+ }, function (_ref6) {
+   var theme = _ref6.theme;
+-  return theme.borderRadius.medium;
++  return theme.borderRadius.large;
+ });
+ 
+ var OutputColumn = /*#__PURE__*/_styled(InputColumn).withConfig({
+diff --git a/node_modules/@uniswap/widgets/dist/index.d.ts b/node_modules/@uniswap/widgets/dist/index.d.ts
+index 07faa29..c9639d6 100644
+--- a/node_modules/@uniswap/widgets/dist/index.d.ts
++++ b/node_modules/@uniswap/widgets/dist/index.d.ts
+@@ -312,6 +312,7 @@ interface TokenDefaults {
+     defaultOutputTokenAddress?: DefaultAddress;
+     defaultOutputAmount?: number | string;
+     defaultChainId?: SupportedChainId;
++    disableTokenSelection?: boolean;
+ }
+ 
+ interface SwapProps extends FeeOptions, SwapController, SwapEventHandlers, TokenDefaults {
+@@ -332,7 +333,10 @@ interface Colors {
+     container: string;
+     module: string;
+     interactive: string;
++    action: string;
++    focus: string;
+     outline: string;
++    border: string;
+     dialog: string;
+     scrim: string;
+     primary: string;
+@@ -340,6 +344,7 @@ interface Colors {
+     secondary: string;
+     hint: string;
+     onInteractive: string;
++    onAction: string;
+     active: string;
+     activeSoft: string;
+     success: string;
+@@ -377,12 +382,16 @@ interface Theme extends Partial<Attributes>, Partial<Colors> {
+ declare const lightTheme: Colors;
+ declare const darkTheme: Colors;
+ declare const defaultTheme: {
++    
+     accent: string;
+     accentSoft: string;
+     container: string;
+     module: string;
+     interactive: string;
++    action: string;
++    focus: string;
+     outline: string;
++    border: string;
+     dialog: string;
+     scrim: string;
+     primary: string;
+@@ -390,6 +399,7 @@ declare const defaultTheme: {
+     secondary: string;
+     hint: string;
+     onInteractive: string;
++    onAction: string;
+     active: string;
+     activeSoft: string;
+     success: string;

@@ -1,0 +1,71 @@
+diff --git a/node_modules/@rainbow-me/rainbowkit/dist/index.js b/node_modules/@rainbow-me/rainbowkit/dist/index.js
+index d1b71d6..8972400 100644
+--- a/node_modules/@rainbow-me/rainbowkit/dist/index.js
++++ b/node_modules/@rainbow-me/rainbowkit/dist/index.js
+@@ -1013,32 +1013,23 @@ import { normalize } from "viem/ens";
+ import { useEnsAvatar } from "wagmi";
+ import { mainnet as mainnet2 } from "wagmi/chains";
+ 
+-// src/hooks/useIsMainnetConfigured.ts
+-import { mainnet } from "wagmi/chains";
+-function useIsMainnetConfigured() {
+-  const rainbowKitChains = useRainbowKitChains();
+-  const chainId = mainnet.id;
+-  const configured = rainbowKitChains.some(
+-    (rainbowKitChain) => rainbowKitChain.id === chainId
+-  );
+-  return configured;
+-}
+-
+ // src/hooks/useMainnetEnsAvatar.ts
+ function useMainnetEnsAvatar(name) {
+-  const mainnetConfigured = useIsMainnetConfigured();
+   const safeNormalize = (ensName) => {
+     try {
+       return normalize(ensName);
+     } catch {
+     }
+   };
++  const config = createConfig({
++    chains: [mainnet2],
++    transports: {
++      [mainnet2.id]: http(),
++    },
++  })
+   const { data: ensAvatar } = useEnsAvatar({
+-    chainId: mainnet2.id,
+     name: name ? safeNormalize(name) : void 0,
+-    query: {
+-      enabled: mainnetConfigured
+-    }
++    config
+   });
+   return ensAvatar;
+ }
+@@ -1272,18 +1263,20 @@ async function getEnhancedProviderEnsName({ address }) {
+   return enhancedProviderEnsName;
+ }
+ function useMainnetEnsName(address) {
+-  const mainnetConfigured = useIsMainnetConfigured();
++  const config = createConfig({
++    chains: [mainnet3],
++    transports: {
++      [mainnet3.id]: http(),
++    },
++  })
+   const { data: ensName } = useEnsName({
+-    chainId: mainnet3.id,
+     address,
+-    query: {
+-      enabled: mainnetConfigured
+-    }
++    config
+   });
+   const { data: enhancedProviderEnsName } = useQuery({
+     queryKey: createQueryKey("address", address),
+     queryFn: () => getEnhancedProviderEnsName({ address }),
+-    enabled: !mainnetConfigured && !!address,
++    enabled: !!address,
+     staleTime: 10 * (60 * 1e3),
+     // 10 minutes
+     retry: 1

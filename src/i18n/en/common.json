@@ -1,0 +1,15 @@
+{
+  "loading": "Loading...",
+  "notFound": {
+    "subtitle": "This page could not be found.",
+    "title": "404"
+  },
+  "resultError": {
+    "description": "This is a problem on our side, not yours.",
+    "reload": "Reload",
+    "title": "Unexpected Error"
+  },
+  "stickyHeader": {
+    "toggleDrawer": "Open navigation"
+  }
+}

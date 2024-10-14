@@ -1,0 +1,99 @@
+{
+  "new": {
+    "title": "New Meme Incoming!",
+    "socials": {
+      "title": "Socials",
+      "extra": "Help your community find you!"
+    },
+    "trading": {
+      "title": "Start Trading",
+      "extra": "Give yourself a head start!"
+    },
+    "cost": "Cost: ~{{cost}} ETH",
+    "submit": "Mint My Coin",
+    "minting": "Minting {{name}}...",
+    "steps": {
+      "token": "Deploying token contract",
+      "initLiquidity": "Initializing liquidity pool",
+      "approveLiquidity": "Approving token for liquidity pool",
+      "approveSwap": "Approving token for first trade",
+      "addLiquidity": "Adding liquidity to pool",
+      "addLiquidityAndSwap": "Adding liquidity to pool and making first trade"
+    },
+    "error": "Failed to mint {{name}}. Please try again later"
+  },
+  "my": {
+    "title": "My Coins"
+  },
+  "leaderboard": {
+    "title": "Top Coins"
+  },
+  "metadata": {
+    "name": {
+      "label": "Name",
+      "placeholder": "WASSUP"
+    },
+    "symbol": {
+      "label": "Symbol",
+      "placeholder": "$WASSUP"
+    },
+    "description": {
+      "label": "Description",
+      "extra": "(max 140 characters)",
+      "placeholder": "$WASSUP on Base - The timeless meme from Bitconneeeect!"
+    },
+    "totalSupply": {
+      "label": "Total Supply",
+      "placeholder": "420690000000"
+    },
+    "image": {
+      "label": "Avatar",
+      "extra": "(max 1MB)",
+      "preview": "Coin Avatar Preview"
+    },
+    "liquidity": {
+      "label": "Liquidity"
+    },
+    "marketCap": {
+      "label": "Market Cap"
+    },
+    "marketCapMini": {
+      "label": "MCap"
+    },
+    "volume": {
+      "label": "Volume (24h)"
+    },
+    "pair": {
+      "label": "Pair"
+    },
+    "balance": {
+      "label": "Balance"
+    }
+  },
+  "misc": {
+    "claimFees": "Claim Fees",
+    "claiming": "Claiming Fees...",
+    "claimError": "Failed to claim fees. Please try again later",
+    "claimSuccess": "Fees claimed successfully!"
+  },
+  "socials": {
+    "twitter": {
+      "label": "Twitter",
+      "placeholder": "@WASSUPonBASE"
+    },
+    "telegram": {
+      "label": "Telegram",
+      "placeholder": "@wassup_on_base"
+    },
+    "website": {
+      "label": "Website",
+      "placeholder": "https://wassup.meme/"
+    }
+  },
+  "trading": {
+    "firstBuy": {
+      "label": "First Buy",
+      "extra": "(recommended to make your meme discoverable by DEX tools and snap up some early liquidity)"
+    }
+  }
+}

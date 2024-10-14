@@ -1,0 +1,16 @@
+{
+  "message": {
+    "subtitle": "Deploy a contract, add liquidity and bootstrap trading with one click",
+    "title": "Create your memecoin",
+    "baseTitle": "on Base",
+    "imageTitle": "Create your memecoin on Base"
+  },
+  "action": {
+    "start": {
+      "text": "Get Started"
+    }
+  },
+  "topCoin": {
+    "title": "Coin of the Week"
+  }
+}

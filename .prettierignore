@@ -1,0 +1,13 @@
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# vite
+dist
+dist-ssr
+.swc
+
+# ide
+.idea

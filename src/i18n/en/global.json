@@ -1,0 +1,32 @@
+{
+  "close": "Close",
+  "save": "Save",
+  "theme": {
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
+  },
+  "unexpectedError": "Unexpected error occurred",
+  "validations": {
+    "required": "Required",
+    "email": "Email address is invalid",
+    "password": "Password must be at least {{minLength}} characters long",
+    "name": "Name cannot be empty",
+    "symbol": "Symbol cannot be empty",
+    "description": "Description must be at least {{minLength}} characters long",
+    "totalSupply": "You must mint at least 1 token",
+    "avatar": {
+      "invalid": "Avatar file is invalid",
+      "size": "Avatar file size must be less than {{maxSize}}KB"
+    },
+    "twitter": "Twitter username is invalid",
+    "telegram": "Telegram username is invalid",
+    "website": "Website URL is invalid"
+  },
+  "optional": "(optional)",
+  "copy": "Copy to clipboard",
+  "copied": "{{token}} contract address copied!",
+  "wallet": "Add to wallet",
+  "addFailed": "Failed to add {{token}} to your wallet",
+  "added": "{{token}} added to your wallet!"
+}

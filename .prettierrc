@@ -1,0 +1,14 @@
+{
+    "plugins": [
+        "prettier-plugin-packagejson",
+        "prettier-plugin-tailwindcss"
+    ],
+    "tailwindFunctions": [
+        "clsx",
+        "cva",
+        "cn"
+    ],
+    "printWidth": 100,
+    "singleQuote": true,
+    "semi": false
+}

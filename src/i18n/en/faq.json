@@ -1,0 +1,27 @@
+{
+  "title": "FAQ",
+  "what": {
+    "title": "What is FomoFactory?",
+    "content": "FomoFactory is a platform that allows you to deploy a token contract, set up a Uniswap V3 liquidity pool, lock liquidity and optionally perform the first buy, all with a single click"
+  },
+  "how": {
+    "title": "How does FomoFactory work?",
+    "content": "With just one click, our portal: \n\t1. Deploys a token contract\n\t2. Sets up a Uniswap V3 liquidity pool\n\t3. Locks the liquidity\n\t4. Optionally performs the first buy to secure a portion of tokens for the creator and prevent sniping"
+  },
+  "ownership": {
+    "title": "Is there any ownership associated with the token contract by default?",
+    "content": "No, by default, the token does not have any owners. This ensures the token appears clean on DEX tools"
+  },
+  "tokenomics": {
+    "title": "What is the tokenomics of the token?",
+    "content": "The initial market cap of the token is set at $10K. The token launch is a fair launch with 100% of the tokens locked in a liquidity pool"
+  },
+  "optionalBuy": {
+    "title": "What is the optional first buy feature?",
+    "content": "The optional first buy secures a portion of tokens for the creator, prevents sniping and makes the token discoverable by DEX tools"
+  },
+  "fees": {
+    "title": "What are the fees associated with using FomoFactory?",
+    "content": "There is a flat fee of $10 for launching a token. Additionally, a 30% fee is charged on claimed Uniswap fees"
+  }
+}
