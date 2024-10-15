@@ -24,6 +24,11 @@ const fetchTopTokens = async (config: Config, chainId: number) => {
 
     console.log('result:', tokens);
 
+    if (!tokens || tokens.length === 0) {
+      console.log('No tokens found.');
+      return; // stop further processing
+    }
+
     const tokensData = await fetchTokensData(config, tokens as `0x${string}`[]);
 
     console.log('tokens data:', tokensData);
